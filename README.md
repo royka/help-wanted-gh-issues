@@ -30,6 +30,21 @@ And you can run it via:
 Once running, you can preview your element at
 `http://localhost:8080/components/help-wanted-gh-issues/`, where `help-wanted-gh-issues` is the name of the directory containing it.
 
+## Installing the Element to use in another project
+
+Install with bower
+
+    bower install help-wanted-gh-issues --save
+
+Include shim and html in `index.html`
+
+    <script src="./bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="./bower_components/help-wanted-gh-issues/help-wanted-gh-issues.html">
+
+Use it
+
+    <help-wanted-gh-issues owner='bower'repo='bower'></help-wanted-gh-issues>
+
 
 ## Testing Your Element
 
