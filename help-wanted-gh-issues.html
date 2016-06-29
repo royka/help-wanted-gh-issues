@@ -1,0 +1,89 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../paper-item/paper-item.html">
+
+<!--
+An element for fetching open github issues tagged with help-wanted
+
+Example:
+
+    <help-wanted-gh-issues></help-wanted-gh-issues>
+
+Example:
+
+    <help-wanted-gh-issues
+      owner='bower'
+      repo='bower'>
+    </help-wanted-gh-issues>
+
+@demo demo/index.html
+@hero hero.svg
+-->
+
+<dom-module id="help-wanted-gh-issues">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+
+    </style>
+    <iron-ajax
+        auto
+        url="{{url}}"
+        handle-as="json"
+        on-response="handleResponse"></iron-ajax>
+    <paper-listbox>
+    <style is="custom-style" include="paper-item-shared-styles"></style>
+
+      <template is="dom-repeat" items="{{issues}}">
+          <a href="{{item.html_url}}" tabindex="-1" target="_blank">
+            <paper-item raised>{{item.title}}</paper-item>
+          </a>
+      </template>
+    </paper-listbox>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'help-wanted-gh-issues',
+
+      properties: {
+        owner: {
+          value: 'polymer',
+          notify: true
+        },
+        repo: {
+          value: 'polymer',
+          notify: true
+        },
+        url: {
+          computed: 'computeUrl(owner, repo)'
+        },
+      },
+
+      handleResponse: function(event, data) {
+          // filter the issues so there are
+          // only a few
+          this.issues = data.response.slice(0,5)
+      },
+
+      computeUrl: function(owner, repo) {
+          return ['https://api.github.com/repos', owner, repo, 'issues?labels=help+wanted&state=open'].join('/');
+      }
+
+    });
+  </script>
+</dom-module>

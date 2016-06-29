@@ -1,0 +1,29 @@
+{
+  "name": "help-wanted-gh-issues",
+  "version": "1.0.0",
+  "authors": [
+    "Sam <samjacobclift@gmail.com>"
+  ],
+  "description": "An element that displays a github repos open issues tagged with help wanted",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "help-wanted-gh-issues.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/royka/help-wanted-gh-issues/",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0",
+    "iron-ajax": "Polymerelements/iron-ajax#^1.2.0",
+    "paper-item": "PolymerElements/paper-item#^1.2.1"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  }
+}
